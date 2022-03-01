@@ -1,4 +1,6 @@
-
+const alert = displayStyle => {
+    document.getElementById('alert').style.display = displayStyle;
+}
 const loadPhoneData = () => {
     document.getElementById('display-all-phone').innerHTML = ``;
     const searchInput = document.getElementById('search-input');
@@ -8,7 +10,15 @@ const loadPhoneData = () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => getPhoneData(data.data));
+        .then(data => {
+
+            if (data.data.length == 0) {
+                alert('block');
+            } else {
+                alert('none');
+                getPhoneData(data.data);
+            }
+        });
     // Clear input search data 
     searchInput.value = '';
 }
