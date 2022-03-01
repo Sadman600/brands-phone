@@ -3,6 +3,10 @@
     display: none;
 }
 
+#spinner{
+    display: none;
+}
+
 #display-single-phone{
     display: none;
 }

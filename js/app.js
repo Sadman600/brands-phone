@@ -1,6 +1,9 @@
 const alert = displayStyle => {
     document.getElementById('alert').style.display = displayStyle;
 }
+const spinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
 const singleDisplay = displayStyle => {
     document.getElementById('display-single-phone').style.display = displayStyle;
 }
@@ -8,6 +11,7 @@ const loadPhoneData = () => {
     const searchInput = document.getElementById('search-input');
     const searchValue = searchInput.value;
     singleDisplay('none');
+    spinner('block');
     document.getElementById('display-all-phone').innerHTML = ``;
     // Load Phone Data 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
@@ -44,6 +48,7 @@ const getPhoneData = phones => {
     `;
         displayAllPhone.appendChild(div);
     }
+    spinner('none');
 }
 
 const loadSingleData = phoneId => {
