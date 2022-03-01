@@ -55,6 +55,8 @@ const loadSingleData = phoneId => {
 
 const getSingleData = phoneData => {
     console.log(phoneData);
+    const sensor = phoneData.mainFeatures.sensors;
+    const other = phoneData.others;
     const displaySinglePhone = document.getElementById('display-single-phone');
     displaySinglePhone.textContent = '';
     const div = document.createElement('div');
@@ -67,7 +69,35 @@ const getSingleData = phoneData => {
                     <div class="card-body">
                         <h5 class="card-title">Name: ${phoneData.name}</h5>
                         <p class="card-text">Release Date: ${phoneData.releaseDate}</p>
-                        <button onclick='' type="button" class="btn btn-primary">Others</button>
+                        <button onclick='' type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">Others</button>
+                        <div id="demo" class="collapse">
+                            <p><strong>Chip Set:</strong> ${phoneData.mainFeatures.chipSet}</p>
+                            <p><strong>Display Size:</strong> ${phoneData.mainFeatures.displaySize}</p>
+                            <p><strong>Memory:</strong> ${phoneData.mainFeatures.memory}</p>
+                            <p><strong>Storage:</strong> ${phoneData.mainFeatures.storage}</p>
+                            <p><strong>Sensors:</strong>
+                                <ul>
+                                    <li>${sensor[0]}</li>
+                                    <li>${sensor[1]}</li>
+                                    <li>${sensor[2]}</li>
+                                    <li>${sensor[3]}</li>
+                                    <li>${sensor[4]}</li>
+                                    <li>${sensor[5]}</li>
+                                    <li>${sensor[6]}</li>
+                                </ul>
+                            </p>
+                            <p><strong>Others:</strong> 
+                                <ul>
+                                    <li><strong>WLAN:</strong> ${other.WLAN}</li>
+                                    <li><strong>Bluetooth:</strong> ${other.Bluetooth}</li>
+                                    <li><strong>GPS:</strong> ${other.GPS}</li>
+                                    <li><strong>USB:</strong> ${other.USB}</li>
+                                    <li><strong>Radio:</strong> ${other.Radio}</li>
+                                    <li><strong>NFC:</strong> ${other.NFC}</li>
+                                    
+                                </ul>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
