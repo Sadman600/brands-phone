@@ -45,7 +45,7 @@ const getPhoneData = phones => {
                     <div class="card-body">
                         <h4 class="card-title">${phone.phone_name}</h4>
                         <p class="card-text">${phone.brand}</p>
-                        <button onclick='loadSingleData("${phone.slug}")' type="button" class="btn btn-primary">Details</button>
+                        <a onclick='loadSingleData("${phone.slug}")' href="#display-single-phone" class="btn btn-primary">Details</a>
                     </div >
                 </div >
     `;
@@ -77,8 +77,7 @@ const getSingleData = phoneData => {
                     <div class="card-body">
                         <h5 class="card-title">Name: ${phoneData.name}</h5>
                         <p class="card-text">Release Date: ${phoneData.releaseDate ? phoneData.releaseDate : ' No release date '}</p>
-                        <button onclick='' type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">Others</button>
-                        <div id="demo" class="collapse">
+                        <div id="demo" class="">
                             <p><strong>Chip Set:</strong> ${phoneData.mainFeatures.chipSet}</p>
                             <p><strong>Display Size:</strong> ${phoneData.mainFeatures.displaySize}</p>
                             <p><strong>Memory:</strong> ${phoneData.mainFeatures.memory}</p>
