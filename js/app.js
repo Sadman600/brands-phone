@@ -7,6 +7,7 @@ const spinner = displayStyle => {
 const singleDisplay = displayStyle => {
     document.getElementById('display-single-phone').style.display = displayStyle;
 }
+// Load Search Phone Data
 const loadPhoneData = () => {
     alert('none');
     document.getElementById('display-all-phone').innerHTML = ``;
@@ -16,25 +17,34 @@ const loadPhoneData = () => {
     spinner('block');
 
     // Load Phone Data 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
+    if (searchValue === 'samsung' || searchValue === 'oppo' || searchValue === 'iphone' || searchValue === 'vivo' || searchValue === 'apple' || searchValue === 'xiaomi' || searchValue === 'realme' || searchValue === 'nokia' || searchValue === 'oneplus' || searchValue === 'symphony') {
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
 
-            if (data.data.length == 0) {
-                alert('block');
-                spinner('none');
-            } else {
-                alert('none');
-                getPhoneData(data.data.slice(0, 20));
-            }
-        });
+                if (data.data.length == 0) {
+                    alert('block');
+                    spinner('none');
+                } else {
+                    alert('none');
+                    getPhoneData(data.data.slice(0, 20));
+                }
+            });
+
+    } else {
+        spinner('none');
+        alert('block');
+
+    }
+
     // Clear input search data 
     searchInput.value = '';
 }
-
+// Display Search Phone Data
 const getPhoneData = phones => {
     const displayAllPhone = document.getElementById('display-all-phone');
+
     for (const phone of phones) {
 
         const div = document.createElement('div');
@@ -45,7 +55,7 @@ const getPhoneData = phones => {
                     <div class="card-body">
                         <h4 class="card-title">${phone.phone_name}</h4>
                         <p class="card-text">${phone.brand}</p>
-                        <a onclick='loadSingleData("${phone.slug}")' href="#display-single-phone" class="btn btn-primary">Details</a>
+                        <a href="#display-single-phone" onclick='loadSingleData("${phone.slug}")' class="btn btn-primary">Details</a>
                     </div >
                 </div >
     `;
@@ -53,14 +63,14 @@ const getPhoneData = phones => {
     }
     spinner('none');
 }
-
+// Load Single Phone Data 
 const loadSingleData = phoneId => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
     fetch(url)
         .then(res => res.json())
         .then(data => getSingleData(data.data));
 }
-
+// Display Single Phone Data
 const getSingleData = phoneData => {
 
     const sensor = phoneData.mainFeatures.sensors;
