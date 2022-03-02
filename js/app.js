@@ -35,7 +35,6 @@ const loadPhoneData = () => {
     } else {
         spinner('none');
         alert('block');
-
     }
 
     // Clear input search data 
@@ -86,7 +85,7 @@ const getSingleData = phoneData => {
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Name: ${phoneData.name}</h5>
-                        <p class="card-text">Release Date: ${phoneData.releaseDate ? phoneData.releaseDate : ' No release date '}</p>
+                        <p class="card-text">Release Date: ${phoneData.releaseDate ? phoneData.releaseDate : ' No release date found '}</p>
                         <div id="demo" class="">
                             <p><strong>Chip Set:</strong> ${phoneData.mainFeatures.chipSet}</p>
                             <p><strong>Display Size:</strong> ${phoneData.mainFeatures.displaySize}</p>
